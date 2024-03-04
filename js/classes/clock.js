@@ -2,7 +2,7 @@ export default class Clock {
     constructor() {
         this.date = new Date();
         this.year = this.date.getFullYear();
-        this.month = this.date.getDate();
+        this.month = this.date.getDate() - 2;
         this.mDay = this.date.getUTCDate()
         this.day = this.date.getDay();
         this.hour = this.date.getHours();
@@ -13,7 +13,6 @@ export default class Clock {
     }
 
     setRealTime() {
-        console.log(this.mDay)
         return `${this.#setDay()} ${this.#setDate()} ${this.#setClock()}`;
     }
 
@@ -35,6 +34,7 @@ export default class Clock {
                 break;
             default:
                 return `${day}th`;
+                break;
         }
     }
 
@@ -47,6 +47,7 @@ export default class Clock {
     }
 
     #setDate() {
-        return `${this.months[this.month - 1]} ${this.#checkDate(this.mDay)} ${this.year}`;
+        console.log(this.month)
+        return `${this.months[this.month]} ${this.#checkDate(this.mDay)} ${this.year}`;
     }
 }

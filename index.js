@@ -10,5 +10,3 @@ const ctx = canvas.getContext('2d');
 const manager = new Manager(canvas);
 
 manager.init();
-
-console.log(ctx)

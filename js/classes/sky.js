@@ -13,7 +13,6 @@ export default class Sky {
     initSky() {
         this.#setSkyColor();
         this.#setStars();
-        console.log(this.stars);
         this.sun.setSkyObject(this.ctx);
         this.moon.setSkyObject(this.ctx);
     }
