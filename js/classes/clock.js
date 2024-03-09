@@ -6,9 +6,7 @@ export default class Clock {
 
     getDate() {
         const date = this.getDateData();
-
         this.setRealTime(date.second, date.minute, date.hour, date.day, date.month, date.mDay, date.year);
-
         setTimeout(() => this.getDate(), 500);
     }
 

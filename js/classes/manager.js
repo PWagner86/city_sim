@@ -19,4 +19,11 @@ export default class Manager {
         this.city.setBuildings();
         this.city.setCitizens();
     }
+
+    animate() {
+        requestAnimationFrame(() => {
+            this.animate();
+            
+        });
+    }
 }
