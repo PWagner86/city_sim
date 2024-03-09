@@ -1,10 +1,11 @@
 export default class Person {
-    constructor(canvas, gender, age, job) {
+    constructor(canvas, personData) {
         this.canvas = canvas;
-        this.ctx = this.canvas.setContext('2d');
-        this.gender = gender;
-        this.age = age;
-        this.job = job;
+        this.ctx = this.canvas.getContext('2d');
+        this.fullName = personData.fullName
+        this.gender = personData.gender;
+        this.age = personData.age;
+        this.job = personData.job;
     }
 
     setPerson() {

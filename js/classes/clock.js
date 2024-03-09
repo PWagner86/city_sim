@@ -1,19 +1,21 @@
 export default class Clock {
     constructor() {
-        this.date = new Date();
-        this.year = this.date.getFullYear();
-        this.month = this.date.getDate() - 2;
-        this.mDay = this.date.getUTCDate()
-        this.day = this.date.getDay();
-        this.hour = this.date.getHours();
-        this.minute = this.date.getMinutes();
-        this.second = this.date.getSeconds();
-        this.weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-        this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        this.weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];        // this.getDate();
     }
 
-    setRealTime() {
-        return `${this.#setDay()} ${this.#setDate()} ${this.#setClock()}`;
+    getDate() {
+        const date = this.getDateData();
+
+        this.setRealTime(date.second, date.minute, date.hour, date.day, date.month, date.mDay, date.year);
+
+        setTimeout(() => this.getDate(), 500);
+    }
+
+    setRealTime(second, minute, hour, day, month, mDay, year) {
+        const time = document.querySelector('span');
+        time.innerHTML = `${this.#setDay(day)} ${this.#setDate(month, mDay, year)} ${this.#setClock(hour, minute, second)}`
+        return `${this.#setDay(day)} ${this.#setDate(month, mDay, year)} ${this.#setClock(hour, minute, second)}`;
     }
 
     #checkTime(time) {
@@ -38,16 +40,29 @@ export default class Clock {
         }
     }
 
-    #setClock() {
-        return `${this.#checkTime(this.hour)}:${this.#checkTime(this.minute)}`;
+    #setClock(hour, minute, second) {
+        return `${this.#checkTime(hour)}:${this.#checkTime(minute)}:${this.#checkTime(second)}`;
     }
 
-    #setDay() {
-        return `${this.weekdays[this.day]}`
+    #setDay(day) {
+        return `${this.weekdays[day]}`;
     }
 
-    #setDate() {
-        console.log(this.month)
-        return `${this.months[this.month]} ${this.#checkDate(this.mDay)} ${this.year}`;
+    #setDate(month, mDay, year) {
+        return `${this.months[month]} ${this.#checkDate(mDay)} ${year}`;
+    }
+
+    getDateData() {
+        const date = new Date();
+
+        return {
+            year : date.getFullYear(),
+            month : date.getMonth(),
+            mDay : date.getUTCDate(),
+            day : date.getDay(),
+            hour : date.getHours(),
+            minute : date.getMinutes(),
+            second : date.getSeconds()
+        };
     }
 }

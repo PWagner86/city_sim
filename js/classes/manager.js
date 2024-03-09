@@ -8,14 +8,15 @@ export default class Manager {
         this.ctx = this.canvas.getContext('2d');
         this.sky = new Sky(this.canvas);
         this.clock = new Clock();
-        console.log(this.clock.setRealTime())
         this.city = new City(this.canvas);
     }
 
     init() {
         console.log('Start Sim');
+        this.clock.getDate();
         this.sky.initSky(this.canvas);
         this.city.setStreet()
         this.city.setBuildings();
+        this.city.setCitizens();
     }
 }
