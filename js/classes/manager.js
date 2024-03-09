@@ -14,7 +14,7 @@ export default class Manager {
     init() {
         console.log('Start Sim');
         this.clock.getDate();
-        this.sky.initSky(this.canvas);
+        this.sky.initSky();
         this.city.setStreet()
         this.city.setBuildings();
         this.city.setCitizens();
