@@ -25,11 +25,11 @@ export default class Sky {
         this.#setSkyColor();
         this.sun.setSkyObject();
         this.moon.setSkyObject();
-        if(hour >= 17) {
+        if(hour >= this.evening) {
             this.stars.forEach( star => star.setSkyObject())
             this.sun.moveDown();
             this.moon.moveUp();
-        } else if(hour >= 6) {
+        } else if(hour >= this.morning) {
             this.sun.moveUp();
             this.moon.moveDown();
         }
