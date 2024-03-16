@@ -8,6 +8,8 @@ export default class City {
         this.ctx = this.canvas.getContext('2d');
         this.buildings = [];
         this.citizens = [];
+
+        console.log(this.citizens)
     }
 
     setStreet() {
@@ -21,23 +23,54 @@ export default class City {
     }
 
     setBuildings() {        
-        for(let i = -20; i < this.canvas.width; i+=120) {
-            const width = getRandomIntMinMax(70, 130);
-            const height = getRandomIntMinMax(100, 450);
-            const y = this.canvas.height - (height + 102);
-            this.building = new Building(this.canvas, i, y, width, height, '#0f0f0e');
-            this.building.setBuilding()
-        }
+        const width = 100;
+        const height = 275;
+        const x = -20;
+        const y = this.canvas.height - (height + 102);
+        const buildingA = new Building(this.canvas, x, y - 100, width, height + 100, '#0f0f0e');
+        buildingA.setBuilding();
+        this.buildings.push(buildingA);
+        const buildingB = new Building(this.canvas, x + 110, y, width, height, '#0f0f0e');
+        buildingB.setBuilding();
+        this.buildings.push(buildingB);
+        const buildingC = new Building(this.canvas, x + 220, y - 60, width, height + 60, '#0f0f0e');
+        buildingC.setBuilding();
+        this.buildings.push(buildingC);
+        const buildingD = new Building(this.canvas, x + 330, y + 80, width, height - 80, '#0f0f0e');
+        buildingD.setBuilding();
+        this.buildings.push(buildingD);
+        const buildingE = new Building(this.canvas, x + 440, y - 120, width, height + 120, '#0f0f0e');
+        buildingE.setBuilding();
+        this.buildings.push(buildingE);
+        const buildingF = new Building(this.canvas, x + 550, y - 200, width, height + 200, '#0f0f0e');
+        buildingF.setBuilding();
+        this.buildings.push(buildingF);
+        const buildingG = new Building(this.canvas, x + 660, y, width, height, '#0f0f0e');
+        buildingG.setBuilding();
+        this.buildings.push(buildingG);
+        const buildingH = new Building(this.canvas, x + 770, y - 50, width, height + 50, '#0f0f0e');
+        buildingH.setBuilding();
+        this.buildings.push(buildingH);
+        const buildingI = new Building(this.canvas, x + 880, y + 20, width, height - 20, '#0f0f0e');
+        buildingI.setBuilding();
+        this.buildings.push(buildingI);
+        const buildingJ = new Building(this.canvas, x + 990, y, width, height, '#0f0f0e');
+        buildingJ.setBuilding();
+        this.buildings.push(buildingJ);
     }
 
     setCitizens() {
+        const citizenCount = 100
         const data = {
             fullName: 'Peter Wagner',
             gender: 'male',
             age: 38,
             job: 'Software Engineer'
         };
-        const persone = new Person(this.canvas, data);
-        
+
+        for(let i = 0; i < citizenCount; i++){
+            this.citizens.push(new Person(this.canvas, data, getRandomIntMinMax(1, 120), getRandomIntMinMax(-300, -10)));
+        };
+
     }
 }

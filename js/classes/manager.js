@@ -6,8 +6,9 @@ export default class Manager {
     constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext('2d');
-        this.sky = new Sky(this.canvas);
         this.clock = new Clock();
+        this.time = this.clock.getDateData();
+        this.sky = new Sky(this.canvas, this.time);
         this.city = new City(this.canvas);
     }
 
@@ -18,12 +19,20 @@ export default class Manager {
         this.city.setStreet()
         this.city.setBuildings();
         this.city.setCitizens();
+        this.animate();
     }
 
     animate() {
-        requestAnimationFrame(() => {
+        requestAnimationFrame((t) => {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this.sky.initSky();
+            this.city.setStreet();
+            this.city.setBuildings();
+            this.city.citizens.forEach( citizen => {
+                citizen.drawPerson();
+                citizen.walk();
+            })
             this.animate();
-            
         });
     }
 }

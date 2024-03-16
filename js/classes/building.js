@@ -20,8 +20,8 @@ export default class Building {
 
     #setLight() {
         const size = 7
-        for(let i = this.x + size; i < this.x + this.width - size; i+=(size * 2)) {
-            for(let j = this.y + size; j < this.y + this.height - size; j+=(size * 2)) {
+        for(let i = this.x + size; i < this.x + this.width - size; i+=(size * 2.25)) {
+            for(let j = this.y + size; j < this.y + this.height - size; j+=(size * 2.25)) {
                 this.ctx.fillStyle = '#ffd358';
                 this.ctx.fillRect(i, j, size, size);
             }
