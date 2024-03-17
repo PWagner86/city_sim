@@ -8,8 +8,9 @@ export default class Sky {
         this.time = time;
         this.sunPos = 0;
         this.moonPos = 0
-        this.evening = 17;
+        this.evening = 18;
         this.morning = 6;
+        this.hue = 71;
 
         if(this.time.hour >= this.evening) this.sunPos = this.canvas.height;
         if(this.time.hour >= this.morning) this.moonPos = this.canvas.height;
@@ -20,9 +21,8 @@ export default class Sky {
         this.#setStars();
     }
 
-    initSky() {
-        const hour = this.time.hour
-        this.#setSkyColor();
+    initSky(hour) {
+        this.#setDayNight(hour);
         this.sun.setSkyObject();
         this.moon.setSkyObject();
         if(hour >= this.evening) {
@@ -48,4 +48,18 @@ export default class Sky {
             this.stars.push(star);
         }
     }
+
+    #setDayNight(hour) {
+        const hueCount = 0.1
+        if(hour >= this.evening) {
+            this.hue -= hueCount;
+            if(this.hue <= 10) this.hue = 10;
+        }else if(hour >= this.morning) {
+            this.hue += hueCount;
+            if(this.hue >= 71) this.hue = 71;
+        }
+        this.#setSkyColor(`hsl(213, 80%, ${this.hue}%)`);
+    }
+
+
 }

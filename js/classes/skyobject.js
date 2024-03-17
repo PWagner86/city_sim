@@ -11,6 +11,8 @@ export default class Skyobject {
 
     setSkyObject() {
         this.ctx.beginPath();
+        this.ctx.shadowColor = this.color;
+        this.ctx.shadowBlur = 20;
         this.ctx.fillStyle = this.color;
         this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         this.ctx.fill();

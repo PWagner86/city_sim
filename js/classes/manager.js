@@ -24,8 +24,9 @@ export default class Manager {
 
     animate() {
         requestAnimationFrame((t) => {
+            const clock = this.clock.getDateData();
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.sky.initSky();
+            this.sky.initSky(clock.hour);
             this.city.setStreet();
             this.city.setBuildings();
             this.city.citizens.forEach( citizen => {

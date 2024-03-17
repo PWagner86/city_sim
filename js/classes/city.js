@@ -1,6 +1,7 @@
 import Building from "./building.js";
 import Person from "./person.js";
 import { getRandomIntMinMax, getRandomInt } from "../utils/math.js";
+import { jobs } from "../utils/data.js";
 
 export default class City {
     constructor(canvas) {
@@ -8,7 +9,6 @@ export default class City {
         this.ctx = this.canvas.getContext('2d');
         this.buildings = [];
         this.citizens = [];
-
         console.log(this.citizens)
     }
 
@@ -61,14 +61,14 @@ export default class City {
 
     setCitizens() {
         const citizenCount = 100
-        const data = {
-            fullName: 'Peter Wagner',
-            gender: 'male',
-            age: 38,
-            job: 'Software Engineer'
-        };
-
         for(let i = 0; i < citizenCount; i++){
+            const index = getRandomInt(jobs.length);
+            const data = {
+                fullName: 'Peter Wagner',
+                gender: 'male',
+                age: 38,
+                job: jobs[index]
+            };
             this.citizens.push(new Person(this.canvas, data, getRandomIntMinMax(1, 120), getRandomIntMinMax(-300, -10)));
         };
 

@@ -11,6 +11,7 @@ export default class Building {
 
     setBuilding() {
         this.ctx.fillStyle = this.color;
+        this.ctx.shadowBlur = 0;
         this.ctx.fillRect(this.x, this.y, this.width, this.height);
         this.ctx.strokeStyle = '#e6e1e1';
         this.ctx.lineWidth = 2;
