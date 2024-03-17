@@ -17,6 +17,7 @@ export default class City {
         this.ctx.fillStyle = '#3b3b3b';
         this.ctx.fillRect(0, this.canvas.height - streetHeight,  this.canvas.width, streetHeight )
         for(let i = -10; i < this.canvas.width; i+=70){
+            this.ctx.shadowBlur = 0;
             this.ctx.fillStyle = '#f1e320';
             this.ctx.fillRect(i, this.canvas.height - 50, 50, 5 )
         }

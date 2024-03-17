@@ -11,14 +11,15 @@ export default class Sky {
         this.evening = 18;
         this.morning = 6;
         this.hue = 71;
+        this.stars = [];
+        this.#setStars();
 
         if(this.time.hour >= this.evening) this.sunPos = this.canvas.height;
         if(this.time.hour >= this.morning) this.moonPos = this.canvas.height;
 
         this.sun = new Skyobject(this.canvas, this.canvas.width - 100, this.sunPos, 50, '#e2cb47');
         this.moon = new Skyobject(this.canvas, 100, this.moonPos, 50, '#d5e0ff');
-        this.stars = [];
-        this.#setStars();
+
     }
 
     initSky(hour) {
@@ -60,6 +61,4 @@ export default class Sky {
         }
         this.#setSkyColor(`hsl(213, 80%, ${this.hue}%)`);
     }
-
-
 }
