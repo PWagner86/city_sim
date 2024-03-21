@@ -1,7 +1,5 @@
 export default class Skyobject {
-    constructor(canvas, x, y, size = 50, color = '#e2cb47') {
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext('2d');
+    constructor(x, y, size = 50, color = '#e2cb47') {
         this.x = x;
         this.y = y;
         this.speed = 1;
@@ -9,18 +7,20 @@ export default class Skyobject {
         this.color = color;
     }
 
-    setSkyObject() {
-        this.ctx.beginPath();
-        this.ctx.shadowColor = this.color;
-        this.ctx.shadowBlur = 20;
-        this.ctx.fillStyle = this.color;
-        this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        this.ctx.fill();
+    setSkyObject(ctx) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 20;
+        ctx.fillStyle = this.color;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
     }
 
-    moveDown() {
+    moveDown(height) {
         this.y += this.speed;
-        if (this.y > this.canvas.height) this.y = this.canvas.height;
+        if (this.y > height) this.y = height;
     }
     
     moveUp() {

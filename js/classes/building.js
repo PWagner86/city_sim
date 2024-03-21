@@ -1,7 +1,5 @@
 export default class Building {
-    constructor(canvas, x, y, width, height, color) {
-        this.canvas = canvas;
-        this.ctx = this.canvas.getContext('2d');
+    constructor(x, y, width, height, color) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -9,22 +7,21 @@ export default class Building {
         this.color = color
     }
 
-    setBuilding() {
-        this.ctx.fillStyle = this.color;
-        this.ctx.shadowBlur = 0;
-        this.ctx.fillRect(this.x, this.y, this.width, this.height);
-        this.ctx.strokeStyle = '#e6e1e1';
-        this.ctx.lineWidth = 2;
-        this.ctx.strokeRect(this.x, this.y, this.width, this.height);
-        this.#setLight();
+    setBuilding(ctx) {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.strokeStyle = '#e6e1e1';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(this.x, this.y, this.width, this.height);
+        this.#setLight(ctx);
     }
 
-    #setLight() {
+    #setLight(ctx) {
         const size = 7
         for(let i = this.x + size; i < this.x + this.width - size; i+=(size * 2.25)) {
             for(let j = this.y + size; j < this.y + this.height - size; j+=(size * 2.25)) {
-                this.ctx.fillStyle = '#ffd358';
-                this.ctx.fillRect(i, j, size, size);
+                ctx.fillStyle = '#ffd358';
+                ctx.fillRect(i, j, size, size);
             }
         }
     }

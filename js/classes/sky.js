@@ -4,7 +4,6 @@ import Skyobject from "./skyobject.js";
 export default class Sky {
     constructor(canvas, time) {
         this.canvas = canvas;
-        this.ctx = this.canvas.getContext('2d');
         this.time = time;
         this.sunPos = 0;
         this.moonPos = 0
@@ -14,25 +13,25 @@ export default class Sky {
         this.stars = [];
         this.#setStars();
 
-        if(this.time.hour >= this.evening) this.sunPos = this.canvas.height;
         if(this.time.hour >= this.morning) this.moonPos = this.canvas.height;
+        if(this.time.hour >= this.evening) this.sunPos = this.canvas.height;
 
-        this.sun = new Skyobject(this.canvas, this.canvas.width - 100, this.sunPos, 50, '#e2cb47');
-        this.moon = new Skyobject(this.canvas, 100, this.moonPos, 50, '#d5e0ff');
+        this.sun = new Skyobject(this.canvas.width - 100, this.sunPos, 50, '#e2cb47');
+        this.moon = new Skyobject(100, this.moonPos, 50, '#d5e0ff');
 
     }
 
-    initSky(hour) {
+    initSky(hour, ctx) {
         this.#setDayNight(hour);
-        this.sun.setSkyObject();
-        this.moon.setSkyObject();
+        this.sun.setSkyObject(ctx);
+        this.moon.setSkyObject(ctx);
         if(hour >= this.evening) {
             this.stars.forEach( star => star.setSkyObject())
             this.sun.moveDown();
             this.moon.moveUp();
         } else if(hour >= this.morning) {
             this.sun.moveUp();
-            this.moon.moveDown();
+            this.moon.moveDown(this.canvas.height);
         }
     }
 

@@ -3,7 +3,6 @@ import { getRandomIntMinMax } from "../utils/math.js";
 export default class Person {
     constructor(canvas, personData, speed, posX) {
         this.canvas = canvas;
-        this.ctx = this.canvas.getContext('2d');
         this.fullName = personData.fullName
         this.gender = personData.gender;
         this.age = personData.age;
@@ -15,20 +14,20 @@ export default class Person {
         this.blue = getRandomIntMinMax(0, 255);
     }
 
-    drawPerson() {
+    drawPerson(ctx) {
         const posY = this.canvas.height - 100;
         // head
-        this.ctx.fillStyle = `rgb(${this.red}, ${this.green}, ${this.blue})`;
-        this.ctx.beginPath();
-        this.ctx.arc(this.posX + 5, posY - 25, 5, 0, Math.PI * 2 );
-        this.ctx.fill();
+        ctx.fillStyle = `rgb(${this.red}, ${this.green}, ${this.blue})`;
+        ctx.beginPath();
+        ctx.arc(this.posX + 5, posY - 25, 5, 0, Math.PI * 2 );
+        ctx.fill();
         // body
-        this.ctx.fillStyle = `rgb(${this.green}, ${this.blue}, ${this.red})`;
-        this.ctx.fillRect(this.posX, posY - 20, 9, 10);
+        ctx.fillStyle = `rgb(${this.green}, ${this.blue}, ${this.red})`;
+        ctx.fillRect(this.posX, posY - 20, 9, 10);
         // legs
-        this.ctx.fillStyle = `rgb(${this.blue}, ${this.red}, ${this.green})`;
-        this.ctx.fillRect(this.posX, posY - 10, 3.5, 10);
-        this.ctx.fillRect(this.posX + 5, posY - 10, 3.5, 10);
+        ctx.fillStyle = `rgb(${this.blue}, ${this.red}, ${this.green})`;
+        ctx.fillRect(this.posX, posY - 10, 3.5, 10);
+        ctx.fillRect(this.posX + 5, posY - 10, 3.5, 10);
     }
 
     walk() {
