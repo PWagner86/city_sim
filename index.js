@@ -1,12 +1,13 @@
-'use strict';
+"use strict";
 
-import Manager from './js/classes/manager.js';
+import Manager from "./js/classes/manager.js";
 
-const canvas = document.querySelector('#canvas1');
-const CANVASWIDTH = canvas.width = 1000;
-const CANVASHEIGHT = canvas.height = 700;
-const ctx = canvas.getContext('2d');
+const main = document.querySelector('[data-id="main"]');
+const canvas = document.querySelector("#canvas1");
+const CANVASWIDTH = (canvas.width = main.clientWidth);
+const CANVASHEIGHT = (canvas.height = main.clientHeight);
+const ctx = canvas.getContext("2d");
 
-const manager = new Manager(canvas, ctx);
+const manager = new Manager(canvas, ctx, main);
 
-manager.init();
+window.addEventListener("load", manager.init());
